@@ -5,8 +5,6 @@ const crypto = require("crypto");
 const User = require("../models/userModel");
 const mailSender = require("../utils/mailSender");
 
-const BASE_URI = window.location.origin
-
 const signup = async (req, res) => {
   try {
     const { firstName, lastName, email, password, confirmPassword } = req.body;
@@ -31,7 +29,7 @@ const signup = async (req, res) => {
       .update(resetEmailToken)
       .digest("hex");
 
-    const uri = `${BASE_URI}/verify-email?token=${_resetEmailToken}`;
+    const uri = `${window.location.origin}/verify-email?token=${_resetEmailToken}`;
 
     try {
       await mailSender({
@@ -106,7 +104,7 @@ const forgotPassword = async (req, res) => {
     user.expireToken = Date.now() + 900000;
 
     await user.save();
-    const uri = `${BASE_URI}/reset-password?token=${resetToken}`;
+    const uri = `${window.location.origin}/reset-password?token=${resetToken}`;
     try {
       await mailSender({
         email: user.email,
