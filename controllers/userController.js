@@ -29,10 +29,10 @@ const signup = async (req, res) => {
       .update(resetEmailToken)
       .digest("hex");
 
-    const uri = `${window.location.origin}/verify-email?token=${_resetEmailToken}`;
+    const uri = `${process.env.BASE_URI}/verify-email?token=${_resetEmailToken}`;
 
     try {
-      await mailSender({
+      await mailSender({ 
         email: email,
         subject: "Verify Email",
         html: `<p>You requested for email verification.</p>
@@ -104,7 +104,7 @@ const forgotPassword = async (req, res) => {
     user.expireToken = Date.now() + 900000;
 
     await user.save();
-    const uri = `${window.location.origin}/reset-password?token=${resetToken}`;
+    const uri = `${process.env.BASE_URI}/reset-password?token=${resetToken}`;
     try {
       await mailSender({
         email: user.email,

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class ApiConfig {
-  readonly baseUrl = "api/user";
+  readonly baseUrl = "/api/user";
 
   readonly login = "/login";
   readonly signup = "/signup";
