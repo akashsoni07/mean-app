@@ -1,0 +1,9 @@
+<div *ngIf="success" class="alert alert-success mt-5" role="alert">
+    <h4 class="alert-heading">Success!</h4>
+    <p>Your MEAN App account email has been verified successfully.</p>
+    <p>Please <a href="#" routerLink="/login">click here</a> to log in.</p>
+</div> 
+<div *ngIf="error" class="alert alert-danger mt-5" role="alert">
+    <h4 class="alert-heading">Error!</h4>
+    <p>{{error}}</p>
+</div> 

@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-md-6 m-auto">
+    <h1 class="text-center">Edit Profile</h1>
+    <p class="text-center">Edit your MEAN App account profile here.</p>
+    <hr />
+    <form
+      [formGroup]="editProfileForm"
+      (ngSubmit)="editProfileForm.valid && onSubmit()"
+    >
+      <div class="form-group">
+        <label>First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              editProfileForm.get('firstName')!.touched &&
+              editProfileForm.get('lastName')!.invalid
+          }"
+          formControlName="firstName"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="editProfileForm.get('firstName')!.hasError('required')"
+            >First Name is required.</span
+          >
+          <span *ngIf="editProfileForm.get('firstName')!.hasError('minlength')"
+            >First Name must have atleast
+            {{
+              editProfileForm.get("firstName")!.errors!.minlength!
+                .requiredLength
+            }}
+            characters.</span
+          >
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              editProfileForm.get('lastName')!.touched &&
+              editProfileForm.get('lastName')!.invalid
+          }"
+          formControlName="lastName"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="editProfileForm.get('lastName')!.hasError('required')"
+            >Last Name is required.</span
+          >
+          <span *ngIf="editProfileForm.get('lastName')!.hasError('minlength')"
+            >Last Name must have
+            {{
+              editProfileForm.get("lastName")!.errors!.minlength!.requiredLength
+            }}
+            characters.</span
+          >
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              editProfileForm.get('email')!.touched &&
+              editProfileForm.get('email')!.invalid
+          }"
+          formControlName="email"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="editProfileForm.get('email')!.hasError('required')"
+            >Email is required.</span
+          >
+          <span *ngIf="editProfileForm.get('email')!.hasError('email')"
+            >Email is invalid.</span
+          >
+        </span>
+      </div>
+      <button class="btn btn-sm btn-block btn-info">Save Profile</button>
+    </form>
+  </div>
+</div>

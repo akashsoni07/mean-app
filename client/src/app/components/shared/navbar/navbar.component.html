@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/"> MEAN App</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <a
+          *ngIf="!currentUser"
+          href="#"
+          class="btn btn-sm btn-info"
+          routerLink="/signup"
+          >Sign up</a
+        >
+        <a
+          *ngIf="!currentUser"
+          href="#"
+          class="btn btn-sm btn-outline-info"
+          routerLink="/login"
+          >Log in</a
+        >
+        <li *ngIf="currentUser" class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          >
+          <span class="bg-info rounded-circle p-2">
+            {{ currentUser.firstName.charAt(0).toUpperCase() }}
+            {{ currentUser.lastName.charAt(0).toUpperCase() }}
+            </span>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-right"
+            aria-labelledby="navbarDropdown"
+          >
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/profile"
+                >Profile</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/edit-profile"
+                >Edit Profile</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" routerLink="/change-password"
+                >Change Password</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" (click)="logout()">Log out</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
