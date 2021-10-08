@@ -19,7 +19,7 @@ const signup = async (req, res) => {
       { firstName, lastName, email, password },
       process.env.EMAILTOKEN_SECRET,
       {
-        expiresIn: process.env.EMAILTOKEN_EXPIRES_IN,
+        expiresIn: "1d",
       }
     );
     const resetEmailToken = crypto.randomBytes(32).toString("hex");
@@ -29,7 +29,7 @@ const signup = async (req, res) => {
       .update(resetEmailToken)
       .digest("hex");
 
-    const uri = `${process.env.BASE_URI}/verify-email?token=${_resetEmailToken}`;
+    const uri = `meanapp21.herokuapp.com/verify-email?token=${_resetEmailToken}`;
 
     try {
       await mailSender({ 
@@ -69,7 +69,7 @@ const login = async (req, res) => {
     }
 
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES_IN,
+      expiresIn: "30d",
     });
 
     res.status(200).json({
@@ -104,7 +104,7 @@ const forgotPassword = async (req, res) => {
     user.expireToken = Date.now() + 900000;
 
     await user.save();
-    const uri = `${process.env.BASE_URI}/reset-password?token=${resetToken}`;
+    const uri = `meanapp21.herokuapp.com/reset-password?token=${resetToken}`;
     try {
       await mailSender({
         email: user.email,
