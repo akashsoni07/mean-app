@@ -49,7 +49,7 @@ const signup = async (req, res) => {
         message:
           "There was an error sending the email, Please try again later!",
         err,
-      });
+      }); 
     }
   } catch (err) {
     res.status(400).json(err);

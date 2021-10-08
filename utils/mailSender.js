@@ -1,23 +1,23 @@
 require("dotenv").config();
 const nodemailer = require("nodemailer");
+const sgTransport = require('nodemailer-sendgrid-transport');
 
 const mailSender = async (options) => {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
+  const mailTransporter = nodemailer.createTransport(sgTransport({
     auth: {
-      user: process.env.EMAIL_USERNAME,
-      pass: process.env.EMAIL_PASSWORD,   
-    },
-  });
+      api_key: process.env.EMAIL_API_KEY
+    }
+  }));
 
   const mailOptions = {
-    from: "MEAN App <hello@mean.com>",
+    from: `"MEAN App" <akashsoni4078@gmail.com>`,
     to: options.email,
+    replyTo: 'aakashsoni10101010@gmail.com',
     subject: options.subject,
-    html: options.html
+    html: options.html 
   };
 
-  await transporter.sendMail(mailOptions);
+  await mailTransporter.sendMail(mailOptions);
 };
 
 module.exports = mailSender;
