@@ -11,7 +11,9 @@ const mailSender = async (options) => {
   }));*/
 
   const mailTransporter = nodemailer.createTransport({
-    service: "gmail",
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
@@ -22,7 +24,7 @@ const mailSender = async (options) => {
   });
 
   const mailOptions = {
-    from: `"MEAN App" <akashsoni4078@gmail.com>`,
+    from: `"MEAN App" <hello@meanapp.com>`,
     to: options.email,
     replyTo: "aakashsoni10101010@gmail.com",
     subject: options.subject,
