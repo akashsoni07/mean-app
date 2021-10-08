@@ -44,6 +44,7 @@ const signup = async (req, res) => {
         emailToken,
       });
     } catch (err) {
+      console.log(err)
       return res.status(400).json({
         message:
           "There was an error sending the email, Please try again later!",
