@@ -11,22 +11,16 @@ const mailSender = async (options) => {
   }));*/
 
   const mailTransporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+    service:"gmail",
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
+    }
   });
 
   const mailOptions = {
     from: `"MEAN App" <hello@meanapp.com>`,
     to: options.email,
-    replyTo: "aakashsoni10101010@gmail.com",
     subject: options.subject,
     html: options.html,
   };
