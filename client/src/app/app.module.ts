@@ -21,6 +21,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { EncrDecrService } from './services/encrdecr.service';
 import { ApiConfig } from './config/api.config';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ApiConfig } from './config/api.config';
       multi: true,
     },
     EncrDecrService,
-    ApiConfig
+    ApiConfig,
+    AuthGuard
   ],
   bootstrap: [AppComponent],
 })

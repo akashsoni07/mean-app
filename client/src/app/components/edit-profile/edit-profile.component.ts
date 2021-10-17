@@ -42,7 +42,7 @@ export class EditProfileComponent implements OnInit {
       email: ['', { validators: [Validators.required, Validators.email] }],
     });
     this.editProfileForm.controls['firstName'].setValue(
-      this.currentUser.firstName
+      this.currentUser.firstName 
     );
     this.editProfileForm.controls['lastName'].setValue(
       this.currentUser.lastName

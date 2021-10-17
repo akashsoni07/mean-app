@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ForgotPasswordComponent } from './forgot-password.component';
+import { ApiConfig } from 'src/app/config/api.config';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
@@ -8,7 +11,9 @@ describe('ForgotPasswordComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ForgotPasswordComponent ]
+      imports: [ ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule ],
+      declarations: [ ForgotPasswordComponent ],
+      providers: [ ApiConfig ]
     })
     .compileComponents();
   });

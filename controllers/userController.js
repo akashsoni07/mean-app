@@ -29,7 +29,7 @@ const signup = async (req, res) => {
       .update(resetEmailToken)
       .digest("hex");
 
-    const uri = `meanapp21.herokuapp.com/verify-email?token=${_resetEmailToken}`;
+    const uri = `http://localhost:4200/verify-email?token=${_resetEmailToken}`;
 
     try {
       await mailSender({ 
@@ -105,7 +105,7 @@ const forgotPassword = async (req, res) => {
     user.expireToken = Date.now() + 900000;
 
     await user.save();
-    const uri = `meanapp21.herokuapp.com/reset-password?token=${resetToken}`;
+    const uri = `http://localhost:4200/reset-password?token=${resetToken}`;
     try {
       await mailSender({
         email: user.email,
