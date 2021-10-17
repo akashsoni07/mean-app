@@ -1,7 +1,6 @@
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 //const sgTransport = require('nodemailer-sendgrid-transport');
-//EMAIL_API_KEY=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
 
 const mailSender = async (options) => {
   /* const mailTransporter = nodemailer.createTransport(sgTransport({
