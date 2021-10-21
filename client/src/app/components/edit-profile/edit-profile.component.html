@@ -79,7 +79,12 @@
           >
         </span>
       </div>
-      <button class="btn btn-sm btn-block btn-info">Save Profile</button>
+      <button
+        [disabled]="editProfileForm.invalid"
+        class="btn btn-sm btn-block btn-info"
+      >
+        Save Profile
+      </button>
     </form>
   </div>
 </div>

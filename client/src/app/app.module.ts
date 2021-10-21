@@ -5,15 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
-import { GlobalAlertComponent } from './components/shared/global-alert/global-alert.component';
 import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { GlobalAlertComponent } from './components/global-alert/global-alert.component';
+import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ProfileComponent } from './components/profile/profile.component';
-import { HomeComponent } from './components/shared/home/home.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
@@ -26,19 +26,19 @@ import { AuthGuard } from './guards/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    FooterComponent,
-    GlobalAlertComponent,
     LoginComponent,
     SignupComponent,
     PageNotFoundComponent,
     ProfileComponent,
-    HomeComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ChangePasswordComponent,
     VerifyEmailComponent,
     EditProfileComponent,
+    NavbarComponent,
+    HomeComponent,
+    GlobalAlertComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

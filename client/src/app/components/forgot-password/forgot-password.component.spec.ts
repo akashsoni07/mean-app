@@ -27,4 +27,40 @@ describe('ForgotPasswordComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should check email is invalid', () => {
+    let email = component.forgotPasswordForm.controls['email'];
+    expect(email.valid).toBeFalsy();
+    expect(email.pristine).toBeTruthy();
+    expect(email.hasError('required')).toBeTruthy();
+    email.setValue('abc');
+    expect(email.hasError('email')).toBeTruthy();
+  });
+
+  it('should check correct email is entered', () => {
+    let email = component.forgotPasswordForm.controls['email'];
+    email.setValue('abc@gmail.com');
+    expect(email.errors).toBeNull();
+    expect(email.valid).toBeTruthy();
+  });
+
+  it('should check form is valid when no values entered', () => {
+    expect(component.forgotPasswordForm.valid).toBeFalsy();
+  });
+
+  it('should check form is valid when values entered', () => {
+    component.forgotPasswordForm.controls['email'].setValue('abc@xyz.com')
+    expect(component.forgotPasswordForm.valid).toBeTruthy();
+  });
+
+  it('should check form is submitted', () => {
+    expect(component.forgotPasswordForm.invalid).toBeTruthy();
+    let btn = fixture.debugElement
+    expect(btn.nativeElement.querySelector('button').disabled).toBeTruthy()
+    component.forgotPasswordForm.controls['email'].setValue('abc@xyz.com')
+    fixture.detectChanges()
+    expect(btn.nativeElement.querySelector('button').disabled).toBeFalsy()
+    component.onSubmit()
+    fixture.detectChanges()
+  });
 });

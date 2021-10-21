@@ -15,10 +15,10 @@ describe('LoginComponent', () => {
       imports: [
         ReactiveFormsModule,
         RouterTestingModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
       declarations: [LoginComponent],
-      providers: [ ApiConfig ]
+      providers: [ApiConfig],
     }).compileComponents();
   });
 
@@ -30,5 +30,57 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should check email is invalid', () => {
+    let email = component.loginForm.controls['email'];
+    expect(email.valid).toBeFalsy();
+    expect(email.pristine).toBeTruthy();
+    expect(email.hasError('required')).toBeTruthy();
+    /*email.setValue('abc');
+    expect(email.hasError('email')).toBeTruthy();*/
+  });
+
+/*  it('should check correct email is entered', () => {
+    let email = component.loginForm.controls['email'];
+    email.setValue('abc@gmail.com');
+    expect(email.errors).toBeNull();
+    expect(email.valid).toBeTruthy();
+  });*/
+
+  it('should check password errors', () => {
+    let pwd = component.loginForm.controls['password'];
+    expect(pwd.hasError('required')).toBeTruthy();
+  /*  pwd.setValue('1234');
+  expect(pwd.hasError('minlength')).toBeTruthy();*/
+  });
+
+  /*it('should check password validity', () => {
+    let pwd = component.loginForm.controls['password'];
+    pwd.setValue('123456');
+    expect(pwd.errors).toBeNull();
+    expect(pwd.valid).toBeTruthy();
+  });*/
+
+  it('should check form is valid when no values entered', () => {
+    expect(component.loginForm.valid).toBeFalsy();
+  });
+
+  it('should check form is valid when values entered', () => {
+    component.loginForm.controls['email'].setValue('abc@xyz.com')
+    component.loginForm.controls['password'].setValue('123456')
+    expect(component.loginForm.valid).toBeTruthy();
+  });
+
+  it('should check form is submitted', () => {
+    expect(component.loginForm.invalid).toBeTruthy();
+    let btn = fixture.debugElement
+    expect(btn.nativeElement.querySelector('button').disabled).toBeTruthy()
+    component.loginForm.controls['email'].setValue('abc@xyz.com')
+    component.loginForm.controls['password'].setValue('123456')
+    fixture.detectChanges()
+    expect(btn.nativeElement.querySelector('button').disabled).toBeFalsy()
+    component.login()
+    fixture.detectChanges()
   });
 });

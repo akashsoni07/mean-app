@@ -12,7 +12,6 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class EditProfileComponent implements OnInit {
   editProfileForm!: FormGroup;
-  currentUser = JSON.parse(localStorage.getItem('currentUser')!);
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -41,15 +40,6 @@ export class EditProfileComponent implements OnInit {
       ],
       email: ['', { validators: [Validators.required, Validators.email] }],
     });
-    this.editProfileForm.controls['firstName'].setValue(
-      this.currentUser.firstName 
-    );
-    this.editProfileForm.controls['lastName'].setValue(
-      this.currentUser.lastName
-    );
-    this.editProfileForm.controls['email'].setValue(
-      this.currentUser.email
-    );
   }
 
   onSubmit() {
